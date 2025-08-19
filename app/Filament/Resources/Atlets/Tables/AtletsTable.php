@@ -9,6 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Infolists\Components\ImageEntry;
 
 class AtletsTable
 {
@@ -18,7 +19,7 @@ class AtletsTable
             ->columns([
                 ImageColumn::make('image')
                     ->disk('public')
-                    ->label('Foto'),
+                    ->visibility('public'),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('sport_id')

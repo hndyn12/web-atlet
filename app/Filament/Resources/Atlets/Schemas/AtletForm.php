@@ -8,6 +8,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
+use Filament\Infolists\Components\ImageEntry;
 
 class AtletForm
 {
@@ -21,10 +22,10 @@ class AtletForm
                     $set('slug', Str::slug($state)))
                     ->required(),
                 FileUpload::make('image')
-                    ->label('Foto')
+                    ->image()
                     ->directory('images')
                     ->disk('public')
-                    ->required(),
+                    ->visibility('public'),
                 Select::make('sport_id')
                     ->label('Cabang Olahraga')
                     ->relationship('sport', 'name', fn($query) => $query->orderBy('name'))

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Atlets\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
@@ -15,8 +16,8 @@ class AtletInfolist
                 TextEntry::make('name')
                     ->label('Nama'),
                 ImageEntry::make('image')
-                    ->label('Foto')
-                    ->url(fn($record) => asset('storage/images/' . $record->image)),
+                    ->disk('public')
+                    ->visibility('public'),
                 TextEntry::make('sport.name')
                     ->label('Cabang Olahraga'),
                 TextEntry::make('birth')
