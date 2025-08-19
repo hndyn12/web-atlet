@@ -1,6 +1,6 @@
 @props(['atlets' => \App\Models\Atlet::all() ?? collect([])])
 <!-- Daftar Atlet -->
-<div id="daftar-atlet" class="py-12 bg-gray-50">
+<div id="daftar-atlet" class="py-12 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
             <p class="max-w-2xl text-xl text-gray-500 mx-auto">Profil singkat atlet-atlet terbaik
@@ -13,7 +13,7 @@
                 <div
                     class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                     <div class="relative">
-                        <img src="{{ asset('storage/' . $atlet->foto) }}" alt=""
+                        <img src="{{ asset('storage/' . $atlet->image) }}" alt=""
                             class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">

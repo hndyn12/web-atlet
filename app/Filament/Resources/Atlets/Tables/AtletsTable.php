@@ -17,11 +17,8 @@ class AtletsTable
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Foto')
                     ->disk('public')
-                    ->url(fn($record) => asset('storage/images/' . $record->image))
-                    ->width(30),
-
+                    ->label('Foto'),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('sport_id')
