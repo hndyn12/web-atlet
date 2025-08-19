@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Atlets\Schemas;
 
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -11,17 +12,30 @@ class AtletInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
-                TextEntry::make('sport_id')
-                    ->numeric(),
+                TextEntry::make('name')
+                    ->label('Nama'),
+                ImageEntry::make('image')
+                    ->label('Foto')
+                    ->url(fn($record) => asset('storage/images/' . $record->image)),
+                TextEntry::make('sport.name')
+                    ->label('Cabang Olahraga'),
                 TextEntry::make('birth')
+                    ->label('Tanggal Lahir')
                     ->date(),
-                TextEntry::make('gender'),
-                TextEntry::make('address'),
-                TextEntry::make('slug'),
+                TextEntry::make('gender')
+                    ->label('Jenis Kelamin')
+                    ->formatStateUsing(function ($state) {
+                        return $state === 'L' ? 'Laki-laki' : ($state === 'P' ? 'Perempuan' : $state);
+                    }),
+                TextEntry::make('address')
+                    ->label('Alamat'),
+                TextEntry::make('slug')
+                    ->label('Slug'),
                 TextEntry::make('created_at')
+                    ->label('Dibuat pada')
                     ->dateTime(),
                 TextEntry::make('updated_at')
+                    ->label('Diperbarui pada')
                     ->dateTime(),
             ]);
     }

@@ -1,40 +1,31 @@
 <?php
 
-namespace App\Filament\Resources\Atlets\Tables;
+namespace App\Filament\Resources\Achievements\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class AtletsTable
+class AchievementsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                ImageColumn::make('image')
-                    ->label('Foto')
-                    ->disk('public')
-                    ->url(fn($record) => asset('storage/images/' . $record->image))
-                    ->width(30),
-
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('atlet_id')
+                    ->numeric()
+                    ->sortable(),
                 TextColumn::make('sport_id')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('birth')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('gender')
+                TextColumn::make('year')
                     ->searchable(),
-                TextColumn::make('address')
-                    ->searchable(),
-                TextColumn::make('slug')
+                TextColumn::make('level')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
