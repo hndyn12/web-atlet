@@ -4,21 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Achievement extends Model
+class coach extends Model
 {
     protected $fillable = [
-        'name',
-        'atlet_id',
         'sport_id',
-        'year',
-        'level',
-        'medal'
+        'name',
+        'lisensi',
+        'sertifikat',
     ];
-
-    public function atlet()
-    {
-        return $this->belongsTo(Atlet::class);
-    }
 
     public function sport()
     {

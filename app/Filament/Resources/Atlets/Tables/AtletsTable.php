@@ -25,6 +25,8 @@ class AtletsTable
                 TextColumn::make('sport_id')
                     ->numeric()
                     ->sortable(),
+                TextColumn::make('atlet_id')
+                    ->searchable(),
                 TextColumn::make('birth')
                     ->date()
                     ->sortable(),
@@ -32,8 +34,12 @@ class AtletsTable
                     ->searchable(),
                 TextColumn::make('address')
                     ->searchable(),
+                TextColumn::make('hasil')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('slug')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

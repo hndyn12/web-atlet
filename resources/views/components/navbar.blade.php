@@ -16,6 +16,11 @@
                                 'match' => request()->is('cabang-olahraga'),
                             ],
                             [
+                                'label' => ' Daftar Pelatih',
+                                'href' => '/coach',
+                                'match' => request()->is('coach'),
+                            ],
+                            [
                                 'label' => 'Daftar Atlet',
                                 'href' => '/daftar-atlet',
                                 'match' => request()->is('daftar-atlet'),
@@ -65,43 +70,25 @@
         });
 
         // Toggle mobile menu
+        // Perbaikan agar lebih mudah dibaca
         const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
         const mobileMenu = document.createElement('div');
         mobileMenu.id = 'mobile-menu';
         mobileMenu.className = 'sm:hidden hidden';
-        mobileMenu.innerHTML = <
-            div class = "px-2 pt-2 pb-3 space-y-1" >
-            <
-            a href = "#"
-        class = "bg-red-50 border-red-500 text-red-700 block px-3 py-2 rounded-md text-base font-medium" > Beranda < /a> <
-        a href = "#cabang-olahraga"
-        class =
-        "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium" >
-        Cabang Olahraga < /a> <
-        a href = "#daftar-atlet"
-        class =
-        "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium" >
-        Daftar Atlet < /a> <
-        a href = "#prestasi"
-        class =
-        "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium" >
-        Prestasi < /a> <
-        div class = "pt-4 pb-3 border-t border-gray-200" >
-        <
-        div class = "px-5" >
-        <
-        input type = "text"
-        placeholder = "Cari atlet..."
-        class =
-        "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500" >
-        <
-        /div> <
-        div class = "mt-3 space-y-1 px-2" >
-        <
-        button class = "w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700" > Masuk < /button> < /
-        div > <
-            /div> < /
-        div > ;
+        mobileMenu.innerHTML = `
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-red-50 border-red-500 text-red-700 block px-3 py-2 rounded-md text-base font-medium">Beranda</a>
+                <a href="#cabang-olahraga" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Cabang Olahraga</a>
+                <a href="#coach" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Daftar Pelatih</a>
+                <a href="#daftar-atlet" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Daftar Atlet</a>
+                <a href="#prestasi" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Prestasi</a>
+                <div class="pt-4 pb-3 border-t border-gray-200">
+                    <div class="mt-3 space-y-1 px-2">
+                        <button class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">Masuk</button>
+                    </div>
+                </div>
+            </div>
+        `;
 
         document.body.appendChild(mobileMenu);
 

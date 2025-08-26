@@ -11,17 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('atlets', function (Blueprint $table) {
+        Schema::create('coaches', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('image');
             $table->foreignId('sport_id');
-            $table->string('atlet_id');
-            $table->date('birth');
-            $table->string('gender');
-            $table->string('address');
-            $table->string('hasil');
-            $table->string('slug');
+            $table->string('name');
+            $table->string('lisensi'); // file upload
+            $table->string('sertifikat');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('atlets');
+        Schema::dropIfExists('coaches');
     }
 };

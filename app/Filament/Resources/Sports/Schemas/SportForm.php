@@ -17,6 +17,8 @@ class SportForm
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
+                TextInput::make('code')
+                    ->required(),
             ]);
     }
 }

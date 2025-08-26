@@ -20,6 +20,8 @@ class AtletInfolist
                     ->visibility('public'),
                 TextEntry::make('sport.name')
                     ->label('Cabang Olahraga'),
+                TextEntry::make('atlet_id')
+                    ->label('NIA'),
                 TextEntry::make('birth')
                     ->label('Tanggal Lahir')
                     ->date(),
@@ -30,6 +32,8 @@ class AtletInfolist
                     }),
                 TextEntry::make('address')
                     ->label('Alamat'),
+                TextEntry::make('hasil')
+                    ->label('Hasil Parameter Kondisi Fisik'),
                 TextEntry::make('slug')
                     ->label('Slug'),
                 TextEntry::make('created_at')

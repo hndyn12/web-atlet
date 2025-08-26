@@ -15,9 +15,10 @@ class AchievementForm
                 TextInput::make('name')
                     ->label('Nama Prestasi')
                     ->required(),
-                Select::make('atlet_id')
+                Select::make('atlets')
                     ->label('Nama Atlet')
-                    ->relationship('atlet', 'name', fn($query) => $query->orderBy('name'))
+                    ->multiple()
+                    ->relationship('atlets', 'name', fn($query) => $query->orderBy('name'))
                     ->searchable(['name'])
                     ->required(),
                 Select::make('sport_id')
@@ -27,9 +28,21 @@ class AchievementForm
                 TextInput::make('year')
                     ->label('Tahun')
                     ->required(),
-                TextInput::make('level')
+                Select::make('level')
                     ->label('Tingkat')
-                    ->required(),
+                    ->options([
+                        'Internasional' => 'Internasional',
+                        'Nasional' => 'Nasional',
+                        'Provinsi' => 'Provinsi',
+                        'Daerah' => 'Daerah',
+                    ]),
+                Select::make('medal')
+                    ->label('Medaly')
+                    ->options([
+                        'emas' => 'Emas',
+                        'perak' => 'Perak',
+                        'perunggu' => 'Perunggu',
+                    ])
             ]);
     }
 }

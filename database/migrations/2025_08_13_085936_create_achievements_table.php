@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('sport_id');
             $table->string('year');
             $table->string('level');
+            $table->string('medal');
             $table->timestamps();
         });
     }

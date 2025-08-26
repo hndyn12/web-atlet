@@ -19,29 +19,44 @@
                         <div class="bg-gray-50 rounded-xl p-6 md:p-8">
                             <div class="flex flex-col md:flex-row md:items-center">
                                 <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                                    @php
+                                        $medal = strtolower($achievement->medal);
+                                        $medalImage = '';
+                                        $medalAlt = '';
+                                        if ($medal === 'emas') {
+                                            $medalImage = '/image/gold.png';
+                                            $medalAlt = 'Medali Emas';
+                                        } elseif ($medal === 'perak') {
+                                            $medalImage = '/image/silver.png';
+                                            $medalAlt = 'Medali Perak';
+                                        } elseif ($medal === 'perunggu') {
+                                            $medalImage = '/image/bronze.png';
+                                            $medalAlt = 'Medali Perunggu';
+                                        } else {
+                                            $medalImage = '/image/medal-default.png';
+                                            $medalAlt = 'Medali';
+                                        }
+                                    @endphp
                                     <div
-                                        class="flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
+                                        class="flex items-center justify-center w-24 h-24 rounded-full bg-red-100 text-red-600">
+                                        <img src="{{ $medalImage }}" alt="{{ $medalAlt }}"
+                                            class="w-20 h-20 object-contain">
                                     </div>
                                 </div>
                                 <div class="flex-1">
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <h3 class="text-lg font-medium text-gray-900">{{ $achievement->name }}</h3>
-                                            <p class="mt-1 text-sm text-gray-500">
+                                            <h3 class="mt-1 text-sm text-gray-500">
                                                 {{ $achievement->atlet->name ?? '-' }} -
                                                 {{ $achievement->sport->name ?? '-' }}
-                                            </p>
+                                            </h3>
                                         </div>
-                                        <span
-                                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">{{ $achievement->level }}</span>
                                     </div>
-                                    <div class="mt-3 text-sm text-gray-500">
+                                    <div class="mt-3 text-sm text-gray-500 flex items-center space-x-2">
                                         <span>{{ $achievement->year }}</span>
+                                        <span
+                                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 ml-2">{{ $achievement->level }}</span>
                                     </div>
                                 </div>
                             </div>

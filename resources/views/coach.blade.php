@@ -1,5 +1,5 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-    <x-cabang-olahraga></x-cabang-olahraga>
+    <x-coach></x-coach>
     <x-footer></x-footer>
 </x-layout>

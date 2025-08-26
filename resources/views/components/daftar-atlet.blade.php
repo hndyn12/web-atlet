@@ -18,15 +18,16 @@
                     @foreach (is_iterable($atlets) ? $atlets : [] as $atlet)
                         <div
                             class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                            <div class="relative">
+                            <div class="relative w-full h-64">
                                 <img src="{{ asset('storage/' . $atlet->image) }}" alt=""
-                                    class="w-full h-full object-cover">
+                                    class="w-full h-full object-cover object-center"
+                                    style="width:100%;height:100%;max-height:16rem;">
                             </div>
                             <div class="p-6">
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <h3 class="text-xl font-bold text-gray-900">{{ $atlet->name }}</h3>
-                                        <p class="text-gray-600">{{ $atlet->sport->name ?? '-' }}</p>
+                                        <p class="text-gray-600">{{ $atlet->sport->name }}</p>
                                     </div>
                                 </div>
 
@@ -50,6 +51,23 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                     {{ $atlet->birth }}
+                                </div>
+
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M10 2a4 4 0 100 8 4 4 0 000-8zm1 9h-2a5 5 0 00-5 5v1a1 1 0 001 1h10a1 1 0 001-1v-1a5 5 0 00-5-5z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    @if ($atlet->gender == 'L')
+                                        <span class="ml-1">Laki-laki</span>
+                                    @elseif($atlet->gender == 'P')
+                                        <span class="ml-1">Perempuan</span>
+                                    @else
+                                        <span class="ml-1">-</span>
+                                    @endif
                                 </div>
 
                                 <div class="mt-3">

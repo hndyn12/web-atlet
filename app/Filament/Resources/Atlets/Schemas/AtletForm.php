@@ -29,7 +29,11 @@ class AtletForm
                 Select::make('sport_id')
                     ->label('Cabang Olahraga')
                     ->relationship('sport', 'name', fn($query) => $query->orderBy('name'))
+                    ->searchable(['name'])
                     ->required(),
+                TextInput::make('atlet_id')
+                    ->label('Atlet ID')
+                    ->disabled(),
                 DatePicker::make('birth')
                     ->label('Tanggal Lahir')
                     ->required(),
@@ -42,6 +46,9 @@ class AtletForm
                     ->required(),
                 TextInput::make('address')
                     ->label('Alamat')
+                    ->required(),
+                TextInput::make('hasil')
+                    ->label('Hasil Kondisi Fisik')
                     ->required(),
                 TextInput::make('slug')
                     ->label('Slug')

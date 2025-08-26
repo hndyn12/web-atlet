@@ -1,33 +1,27 @@
 <?php
 
-namespace App\Filament\Resources\Achievements\Tables;
+namespace App\Filament\Resources\Coaches\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class AchievementsTable
+class CoachesTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('atlet_id')
-                    ->numeric()
-                    ->sortable(),
                 TextColumn::make('sport_id')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('year')
+                TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('level')
+                TextColumn::make('lisensi')
                     ->searchable(),
-                TextColumn::make('medal')
+                TextColumn::make('sertifikat')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -42,7 +36,6 @@ class AchievementsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
