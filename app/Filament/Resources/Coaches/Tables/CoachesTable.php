@@ -10,6 +10,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
 
 class CoachesTable
 {
@@ -24,9 +25,16 @@ class CoachesTable
                     ->searchable(),
                 TextColumn::make('lisensi')
                     ->searchable(),
-                ImageColumn::make('sertifikat')
-                    ->disk('public')
-                    ->visibility('public'),
+                TextColumn::make('sertifikat')
+                    ->label('Sertifikat')
+                    ->formatStateUsing(
+                        fn($state) =>
+                        str_ends_with(strtolower($state), '.pdf')
+                            ? '📄 PDF'
+                            : '🖼️ Gambar'
+                    )
+                    ->url(fn($state) => $state ? Storage::disk('public')->url($state) : null)
+                    ->openUrlInNewTab(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -23,31 +23,21 @@
                                         <h3 class="text-xl font-bold text-gray-900">{{ $coach->name }}</h3>
                                         <p class="text-l font-bold text-gray-600">Lisensi : {{ $coach->lisensi }}</p>
                                     </div>
-                                    @if ($coach->sertifikat)
+                                    @php
+                                        $sertifikat = $coach->sertifikat
+                                            ? Storage::disk('public')->url($coach->sertifikat)
+                                            : null;
+                                        $isPdf =
+                                            $coach->sertifikat &&
+                                            \Illuminate\Support\Str::endsWith(strtolower($coach->sertifikat), '.pdf');
+                                    @endphp
+                                    @if ($sertifikat)
                                         <div class="mt-4">
                                             <h4 class="text-sm font-medium text-gray-900">Sertifikat:</h4>
-                                            @php
-                                                $ext = pathinfo($coach->sertifikat, PATHINFO_EXTENSION);
-                                                $isImage = in_array(strtolower($ext), [
-                                                    'jpg',
-                                                    'jpeg',
-                                                    'png',
-                                                    'gif',
-                                                    'webp',
-                                                ]);
-                                            @endphp
-                                            @if ($isImage)
-                                                <a href="{{ $coach->sertifikat }}" target="_blank">
-                                                    <img src="{{ $coach->sertifikat }}"
-                                                        alt="Sertifikat {{ $coach->name }}"
-                                                        class="w-32 h-auto mt-2 rounded shadow">
-                                                </a>
-                                            @else
-                                                <a href="{{ $coach->sertifikat }}" target="_blank"
-                                                    class="text-blue-600 underline mt-2 inline-block">
-                                                    Lihat Sertifikat
-                                                </a>
-                                            @endif
+                                            <a href="{{ $sertifikat }}" target="_blank"
+                                                class="text-blue-600 underline mt-2 inline-block flex items-center gap-1">
+                                                <span>Lihat Sertifikat</span>
+                                            </a>
                                         </div>
                                     @else
                                         <div class="mt-4 text-sm text-gray-500">Belum ada sertifikat yang diunggah.

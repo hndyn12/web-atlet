@@ -33,8 +33,7 @@ class CoachForm
                     ->required(),
 
                 FileUpload::make('sertifikat')
-                    ->image()
-                    ->directory('images')
+                    ->directory('dokumen')
                     ->disk('public')
                     ->visibility('public'),
             ]);

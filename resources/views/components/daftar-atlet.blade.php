@@ -90,7 +90,6 @@
                                     <h4 class="text-sm font-medium text-gray-900">Prestasi:</h4>
                                     <ul class="mt-1 text-sm text-gray-500 space-y-1">
                                         @php
-                                            // Ambil prestasi berdasarkan id atlet
                                             $prestasiAtlet = \App\Models\Achievement::where(
                                                 'atlet_id',
                                                 $atlet->id,

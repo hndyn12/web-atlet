@@ -6,6 +6,7 @@ use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class CoachInfolist
 {
@@ -22,9 +23,16 @@ class CoachInfolist
                 TextEntry::make('lisensi')
                     ->label('Lisensi'),
 
-                ImageEntry::make('sertifikat')
-                    ->disk('public')
-                    ->visibility('public'),
+                TextEntry::make('sertifikat')
+                    ->label('Sertifikat')
+                    ->formatStateUsing(
+                        fn($state) =>
+                        str_ends_with(strtolower($state), '.pdf')
+                            ? '📄 PDF'
+                            : '🖼️ Gambar'
+                    )
+                    ->url(fn($state) => $state ? Storage::disk('public')->url($state) : null)
+                    ->openUrlInNewTab(),
             ]);
     }
 }
