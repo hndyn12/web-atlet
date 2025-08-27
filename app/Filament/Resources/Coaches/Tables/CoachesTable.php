@@ -3,8 +3,11 @@
 namespace App\Filament\Resources\Coaches\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -21,8 +24,9 @@ class CoachesTable
                     ->searchable(),
                 TextColumn::make('lisensi')
                     ->searchable(),
-                TextColumn::make('sertifikat')
-                    ->searchable(),
+                ImageColumn::make('sertifikat')
+                    ->disk('public')
+                    ->visibility('public'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -36,7 +40,9 @@ class CoachesTable
                 //
             ])
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

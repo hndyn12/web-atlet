@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Sports\Schemas;
 
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -12,7 +13,10 @@ class SportInfolist
         return $schema
             ->components([
                 TextEntry::make('name'),
-                TextEntry::make('description'),
+                ImageEntry::make('description')
+                    ->label('Icon')
+                    ->disk('public')
+                    ->visibility('public'),
                 TextEntry::make('created_at')
                     ->dateTime(),
                 TextEntry::make('updated_at')

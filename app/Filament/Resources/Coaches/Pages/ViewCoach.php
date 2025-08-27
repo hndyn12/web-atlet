@@ -3,19 +3,17 @@
 namespace App\Filament\Resources\Coaches\Pages;
 
 use App\Filament\Resources\Coaches\CoachResource;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\ViewAction;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Actions\EditAction;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditCoach extends EditRecord
+class ViewCoach extends ViewRecord
 {
     protected static string $resource = CoachResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            ViewAction::make(),
-            DeleteAction::make(),
+            EditAction::make(),
         ];
     }
 }

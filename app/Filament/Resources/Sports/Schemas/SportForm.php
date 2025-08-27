@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Sports\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -13,11 +14,13 @@ class SportForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nama Cabang Olahraga')
                     ->required(),
-                Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull(),
+                FileUpload::make('description')
+                    ->label('Icon')
+                    ->disk('public'),
                 TextInput::make('code')
+                    ->label('Kode')
                     ->required(),
             ]);
     }

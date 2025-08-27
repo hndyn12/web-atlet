@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Coaches\Schemas;
 
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
 
@@ -17,21 +17,26 @@ class CoachForm
                     ->label('Cabang Olahraga')
                     ->relationship('sport', 'name', fn($query) => $query->orderBy('name'))
                     ->required(),
+
                 TextInput::make('name')
                     ->label('Nama Pelatih')
                     ->required(),
+
                 Select::make('lisensi')
                     ->label('Lisensi')
                     ->options([
                         'Internasional' => 'Internasional',
-                        'Nasional' => 'Nasional',
-                        'Provinsi' => 'Provinsi',
-                        'Daerah' => 'Daerah',
+                        'Nasional'      => 'Nasional',
+                        'Provinsi'      => 'Provinsi',
+                        'Daerah'        => 'Daerah',
                     ])
                     ->required(),
+
                 FileUpload::make('sertifikat')
-                    ->label('Sertifikat')
-                    ->required(),
+                    ->image()
+                    ->directory('images')
+                    ->disk('public')
+                    ->visibility('public'),
             ]);
     }
 }
