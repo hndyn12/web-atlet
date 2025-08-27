@@ -21,6 +21,7 @@
         </div>
     </div>
     <x-medal></x-medal>
+    <x-count></x-count>
 
     <x-cabang-olahraga :sports="$sports">
         <x-button-link href="/cabang-olahraga">Lihat Semua Cabang Olahraga</x-button-link>

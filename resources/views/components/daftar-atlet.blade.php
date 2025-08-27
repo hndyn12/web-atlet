@@ -69,6 +69,22 @@
                                         <span class="ml-1">-</span>
                                     @endif
                                 </div>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M9 2a1 1 0 011-1h2a1 1 0 011 1v1h2a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h2V2zm1 2V2h2v2h-2zm-3 2v11h8V6H7z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="ml-1">Hasil Tes Kondisi Fisik:
+                                        @if (!empty($atlet->hasil))
+                                            {{ $atlet->hasil }}
+                                        @else
+                                            -
+                                        @endif
+                                    </span>
+                                </div>
 
                                 <div class="mt-3">
                                     <h4 class="text-sm font-medium text-gray-900">Prestasi:</h4>

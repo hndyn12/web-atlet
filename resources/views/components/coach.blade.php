@@ -21,7 +21,7 @@
                                     <div>
                                         <p class="text-gray-600">{{ $coach->sport->name ?? '-' }}</p>
                                         <h3 class="text-xl font-bold text-gray-900">{{ $coach->name }}</h3>
-                                        <p class="text-l font-bold text-gray-700">Lisensi : {{ $coach->lisensi }}</p>
+                                        <p class="text-l font-bold text-gray-600">Lisensi : {{ $coach->lisensi }}</p>
                                     </div>
                                     @if ($coach->sertifikat)
                                         <div class="mt-4">
