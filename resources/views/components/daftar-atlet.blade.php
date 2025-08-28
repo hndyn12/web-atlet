@@ -20,13 +20,18 @@
                             class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                             <div class="relative w-full h-64">
                                 <img src="{{ asset('storage/' . $atlet->image) }}" alt=""
-                                    class="w-full h-full object-cover object-center"
+                                    class="w-full h-full object-contain object-center"
                                     style="width:100%;height:100%;max-height:16rem;">
                             </div>
                             <div class="p-6">
                                 <div class="flex justify-between items-start">
                                     <div>
-                                        <h3 class="text-xl font-bold text-gray-900">{{ $atlet->name }}</h3>
+                                        <div class="flex items-center space-x-2">
+                                            <h3 class="text-xl font-bold text-gray-900">{{ $atlet->name }}</h3>
+                                            <span
+                                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-800 ml-2"
+                                                title="Nomor Induk Atlet">NIA: {{ $atlet->atlet_id }}</span>
+                                        </div>
                                         <p class="text-gray-600">{{ $atlet->sport->name }}</p>
                                     </div>
                                 </div>
@@ -102,12 +107,10 @@
                                         @endforelse
                                     </ul>
                                 </div>
-
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
-            {{ $slot }}
         </div>
 </section>

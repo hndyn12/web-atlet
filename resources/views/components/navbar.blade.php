@@ -16,7 +16,7 @@
                                 'match' => request()->is('cabang-olahraga'),
                             ],
                             [
-                                'label' => ' Daftar Pelatih',
+                                'label' => 'Daftar Pelatih',
                                 'href' => '/coach',
                                 'match' => request()->is('coach'),
                             ],
@@ -44,7 +44,7 @@
                 <div class="-mr-2 flex items-center sm:hidden">
                     <button type="button"
                         class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
-                        aria-controls="mobile-menu" aria-expanded="false">
+                        aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
                         <span class="sr-only">Open main menu</span>
                         <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" aria-hidden="true">
@@ -55,46 +55,55 @@
                 </div>
             </div>
         </div>
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                @foreach ($navItems as $item)
+                    <a href="{{ $item['href'] }}"
+                        class="{{ $item['match'] ? 'bg-red-50 border-red-500 text-red-700' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700' }} block px-3 py-2 rounded-md text-base font-medium">
+                        {{ $item['label'] }}
+                    </a>
+                @endforeach
+                <div class="pt-4 pb-3 border-t border-gray-200">
+                    <div class="mt-3 space-y-1 px-2">
+                        <a href="/admin"
+                            class="w-full block px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 text-center">Masuk</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </nav>
 
     <script>
-        // Smooth scrolling for anchor links
+        // Smooth scrolling untuk anchor link
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                // Cek apakah href ada id yang valid di halaman
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
         // Toggle mobile menu
-        // Perbaikan agar lebih mudah dibaca
-        const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
-        const mobileMenu = document.createElement('div');
-        mobileMenu.id = 'mobile-menu';
-        mobileMenu.className = 'sm:hidden hidden';
-        mobileMenu.innerHTML = `
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#" class="bg-red-50 border-red-500 text-red-700 block px-3 py-2 rounded-md text-base font-medium">Beranda</a>
-                <a href="#cabang-olahraga" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Cabang Olahraga</a>
-                <a href="#coach" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Daftar Pelatih</a>
-                <a href="#daftar-atlet" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Daftar Atlet</a>
-                <a href="#prestasi" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block px-3 py-2 rounded-md text-base font-medium">Prestasi</a>
-                <div class="pt-4 pb-3 border-t border-gray-200">
-                    <div class="mt-3 space-y-1 px-2">
-                        <button class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">Masuk</button>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        document.body.appendChild(mobileMenu);
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
         mobileMenuButton.addEventListener('click', function() {
             const expanded = this.getAttribute('aria-expanded') === 'true' || false;
             this.setAttribute('aria-expanded', !expanded);
             mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tutup menu mobile saat klik link navigasi
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', false);
+            });
         });
     </script>

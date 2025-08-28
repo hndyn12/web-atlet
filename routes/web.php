@@ -34,3 +34,23 @@ Route::get('/daftar-atlet', function () {
 Route::get('/prestasi', function () {
     return view('prestasi', ['title' => 'PRESTASI']);
 });
+
+Route::get('/atletsport/{sport}', function (Sport $sport) {
+    $atlets = $sport->atlets()->get();
+    return view('atletsport', [
+        'title' => 'ATLET ' . strtoupper($sport->name),
+        'sport' => $sport,
+        'atlets' => $atlets,
+
+    ]);
+})->name('atletsport.show');
+
+Route::get('/medals/{medal}', function ($medal) {
+    $achievements = Achievement::where('medal', strtolower($medal))->get();
+
+    return view('medals', [
+        'title' => 'Prestasi Medali ' . ucfirst($medal),
+        'medal' => $medal,
+        'achievements' => $achievements,
+    ]);
+})->name('medals.show');

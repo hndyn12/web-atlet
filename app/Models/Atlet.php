@@ -49,4 +49,14 @@ class Atlet extends Model
             $atlet->atlet_id = $prefix . str_pad($number, 3, '0', STR_PAD_LEFT);
         });
     }
+
+    public function atlets()
+    {
+        return $this->hasMany(\App\Models\Atlet::class, 'sport_id');
+    }
+
+    public function achievements()
+    {
+        return $this->hasMany(Achievement::class, 'atlet_id');
+    }
 }
